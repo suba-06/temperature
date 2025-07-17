@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Body Temperature Estimator</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      margin-top: 20px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Body Temperature Estimator</h1>
+  <button onclick="startScan()">Tap to Scan</button>
+  <p id="result">Waiting for scan...</p>
+
+  <script>
+    async function startScan() {
+      document.getElementById('result').innerText = "Scanning...";
+
+      const response = await fetch('http://localhost:5000/scan');
+      const data = await response.text();
+      document.getElementById('result').innerText = data;
+    }
+  </script>
+</body>
+</html>
