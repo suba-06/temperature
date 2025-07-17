@@ -35,10 +35,13 @@
   <script>
     async function startScan() {
       document.getElementById('result').innerText = "Scanning...";
-
-      const response = await fetch('http://localhost:5000/scan');
-      const data = await response.text();
-      document.getElementById('result').innerText = data;
+      try {
+        const response = await fetch('http://localhost:5000/scan');
+        const data = await response.text();
+        document.getElementById('result').innerText = data;
+      } catch (error) {
+        document.getElementById('result').innerText = "Failed to connect to backend.";
+      }
     }
   </script>
 </body>
